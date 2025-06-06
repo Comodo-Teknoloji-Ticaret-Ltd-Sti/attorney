@@ -3,6 +3,23 @@ import { Scale, Menu, X } from 'lucide-react';
 
 function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [activeSection, setActiveSection] = useState('anasayfa');
+
+    const scrollToSection = (sectionId) => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+            const offset = 80; // header height + extra padding
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }
+        setIsMenuOpen(false);
+        setActiveSection(sectionId.replace('#', ''));
+    };
 
     return (
         <header className="bg-slate-900 text-white sticky top-0 z-50 shadow-lg">
@@ -17,12 +34,90 @@ function Header() {
                     </div>
 
                     <nav className="hidden md:flex space-x-8">
-                        <a href="#anasayfa" className="hover:text-amber-400 transition-colors">Ana Sayfa</a>
-                        <a href="#hakkimizda" className="hover:text-amber-400 transition-colors">Hakkımızda</a>
-                        <a href="#dundar-ai" className="hover:text-amber-400 transition-colors">Dündar AI</a>
-                        <a href="#hizmetler" className="hover:text-amber-400 transition-colors">Hizmetlerimiz</a>
-                        <a href="#ekip" className="hover:text-amber-400 transition-colors">Ekibimiz</a>
-                        <a href="#iletisim" className="hover:text-amber-400 transition-colors">İletişim</a>
+                        <button 
+                            onClick={() => scrollToSection('anasayfa')}
+                            className={`relative py-2 px-1 transition-colors ${
+                                activeSection === 'anasayfa' 
+                                ? 'text-amber-400' 
+                                : 'hover:text-amber-400'
+                            } before:content-[''] before:absolute before:bottom-0 before:left-0 before:w-full before:h-0.5 before:bg-amber-400 before:transform before:scale-x-0 before:transition-transform before:duration-300 ${
+                                activeSection === 'anasayfa' 
+                                ? 'before:scale-x-100' 
+                                : 'hover:before:scale-x-100'
+                            }`}
+                        >
+                            Ana Sayfa
+                        </button>
+                        <button 
+                            onClick={() => scrollToSection('hakkimizda')}
+                            className={`relative py-2 px-1 transition-colors ${
+                                activeSection === 'hakkimizda' 
+                                ? 'text-amber-400' 
+                                : 'hover:text-amber-400'
+                            } before:content-[''] before:absolute before:bottom-0 before:left-0 before:w-full before:h-0.5 before:bg-amber-400 before:transform before:scale-x-0 before:transition-transform before:duration-300 ${
+                                activeSection === 'hakkimizda' 
+                                ? 'before:scale-x-100' 
+                                : 'hover:before:scale-x-100'
+                            }`}
+                        >
+                            Hakkımızda
+                        </button>
+                        <button 
+                            onClick={() => scrollToSection('dundar-ai')}
+                            className={`relative py-2 px-1 transition-colors ${
+                                activeSection === 'dundar-ai' 
+                                ? 'text-amber-400' 
+                                : 'hover:text-amber-400'
+                            } before:content-[''] before:absolute before:bottom-0 before:left-0 before:w-full before:h-0.5 before:bg-amber-400 before:transform before:scale-x-0 before:transition-transform before:duration-300 ${
+                                activeSection === 'dundar-ai' 
+                                ? 'before:scale-x-100' 
+                                : 'hover:before:scale-x-100'
+                            }`}
+                        >
+                            Dündar AI
+                        </button>
+                        <button 
+                            onClick={() => scrollToSection('hizmetler')}
+                            className={`relative py-2 px-1 transition-colors ${
+                                activeSection === 'hizmetler' 
+                                ? 'text-amber-400' 
+                                : 'hover:text-amber-400'
+                            } before:content-[''] before:absolute before:bottom-0 before:left-0 before:w-full before:h-0.5 before:bg-amber-400 before:transform before:scale-x-0 before:transition-transform before:duration-300 ${
+                                activeSection === 'hizmetler' 
+                                ? 'before:scale-x-100' 
+                                : 'hover:before:scale-x-100'
+                            }`}
+                        >
+                            Hizmetlerimiz
+                        </button>
+                        <button 
+                            onClick={() => scrollToSection('ekip')}
+                            className={`relative py-2 px-1 transition-colors ${
+                                activeSection === 'ekip' 
+                                ? 'text-amber-400' 
+                                : 'hover:text-amber-400'
+                            } before:content-[''] before:absolute before:bottom-0 before:left-0 before:w-full before:h-0.5 before:bg-amber-400 before:transform before:scale-x-0 before:transition-transform before:duration-300 ${
+                                activeSection === 'ekip' 
+                                ? 'before:scale-x-100' 
+                                : 'hover:before:scale-x-100'
+                            }`}
+                        >
+                            Ekibimiz
+                        </button>
+                        <button 
+                            onClick={() => scrollToSection('iletisim')}
+                            className={`relative py-2 px-1 transition-colors ${
+                                activeSection === 'iletisim' 
+                                ? 'text-amber-400' 
+                                : 'hover:text-amber-400'
+                            } before:content-[''] before:absolute before:bottom-0 before:left-0 before:w-full before:h-0.5 before:bg-amber-400 before:transform before:scale-x-0 before:transition-transform before:duration-300 ${
+                                activeSection === 'iletisim' 
+                                ? 'before:scale-x-100' 
+                                : 'hover:before:scale-x-100'
+                            }`}
+                        >
+                            İletişim
+                        </button>
                     </nav>
 
                     <button
@@ -36,12 +131,54 @@ function Header() {
                 {isMenuOpen && (
                     <div className="md:hidden pb-4">
                         <nav className="flex flex-col space-y-2">
-                            <a href="#anasayfa" className="hover:text-amber-400 transition-colors py-2">Ana Sayfa</a>
-                            <a href="#hakkimizda" className="hover:text-amber-400 transition-colors py-2">Hakkımızda</a>
-                            <a href="#dundar-ai" className="hover:text-amber-400 transition-colors py-2">Dündar AI</a>
-                            <a href="#hizmetler" className="hover:text-amber-400 transition-colors py-2">Hizmetlerimiz</a>
-                            <a href="#ekip" className="hover:text-amber-400 transition-colors py-2">Ekibimiz</a>
-                            <a href="#iletisim" className="hover:text-amber-400 transition-colors py-2">İletişim</a>
+                            <button onClick={() => scrollToSection('anasayfa')} 
+                                className={`text-left py-2 px-4 transition-all duration-300 ${
+                                    activeSection === 'anasayfa' 
+                                    ? 'text-amber-400 bg-slate-800' 
+                                    : 'hover:text-amber-400 hover:bg-slate-800'
+                                }`}>
+                                Ana Sayfa
+                            </button>
+                            <button onClick={() => scrollToSection('hakkimizda')} 
+                                className={`text-left py-2 px-4 transition-all duration-300 ${
+                                    activeSection === 'hakkimizda' 
+                                    ? 'text-amber-400 bg-slate-800' 
+                                    : 'hover:text-amber-400 hover:bg-slate-800'
+                                }`}>
+                                Hakkımızda
+                            </button>
+                            <button onClick={() => scrollToSection('dundar-ai')} 
+                                className={`text-left py-2 px-4 transition-all duration-300 ${
+                                    activeSection === 'dundar-ai' 
+                                    ? 'text-amber-400 bg-slate-800' 
+                                    : 'hover:text-amber-400 hover:bg-slate-800'
+                                }`}>
+                                Dündar AI
+                            </button>
+                            <button onClick={() => scrollToSection('hizmetler')} 
+                                className={`text-left py-2 px-4 transition-all duration-300 ${
+                                    activeSection === 'hizmetler' 
+                                    ? 'text-amber-400 bg-slate-800' 
+                                    : 'hover:text-amber-400 hover:bg-slate-800'
+                                }`}>
+                                Hizmetlerimiz
+                            </button>
+                            <button onClick={() => scrollToSection('ekip')} 
+                                className={`text-left py-2 px-4 transition-all duration-300 ${
+                                    activeSection === 'ekip' 
+                                    ? 'text-amber-400 bg-slate-800' 
+                                    : 'hover:text-amber-400 hover:bg-slate-800'
+                                }`}>
+                                Ekibimiz
+                            </button>
+                            <button onClick={() => scrollToSection('iletisim')} 
+                                className={`text-left py-2 px-4 transition-all duration-300 ${
+                                    activeSection === 'iletisim' 
+                                    ? 'text-amber-400 bg-slate-800' 
+                                    : 'hover:text-amber-400 hover:bg-slate-800'
+                                }`}>
+                                İletişim
+                            </button>
                         </nav>
                     </div>
                 )}
