@@ -1,6 +1,7 @@
 import React from 'react';
-import adam1 from '../assets/images/adam1.png';
-import mahkeme from '../assets/images/mahkeme.jpg';
+import adam1 from '../assets/images/lawyer_male_min.png';
+import mahkeme from '../assets/images/banner.png';
+
 
 function HeroSection() {
     return (
