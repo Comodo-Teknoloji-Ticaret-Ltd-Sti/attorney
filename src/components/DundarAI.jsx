@@ -6,7 +6,7 @@ function DundarAI() {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
 
-    const GEMINI_API_KEY = 'AIzaSyBehJuRqXAQUocT2FzxuV-oD3DG2tvrH8o';
+    const GEMINI_API_KEY = 'AIzaSyDr0ciUe5ywQJpB5hqmv7b66VqIBr4FBAk';
 
     const askDundarAI = async () => {
         if (!question.trim()) {
